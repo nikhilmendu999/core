@@ -784,4 +784,24 @@ class Test_Files_Sharing_Api extends Test_Files_Sharing_Base {
 		$this->assertTrue($result3->succeeded());
 
 	}
+
+	function testCorrectPath() {
+		$path = "/foo/bar/test.txt";
+		$folder = "/correct/path";
+		$expectedResult = "/correct/path/test.txt";
+
+		$shareApiDummy = new TestShareApi();
+
+		$this->assertSame($expectedResult, $shareApiDummy->correctPathTest($path, $folder));
+	}
+
+}
+
+/**
+ * @brief dumnmy class to test protected methods
+ */
+class TestShareApi extends \OCA\Files\Share\Api {
+	public function correctPathTest($path, $folder) {
+		return self::correctPath($path, $folder);
+}
 }
